@@ -19,7 +19,7 @@ class Graph{
         void addVertex(int newVertex);
         void addEdge(int vertex1, int vertex2);
         void removeEdge(int vertex1, int vertex2);
-        void removeVertex(int vertex1, int vertex2);
+        void removeVertex(int vertex);
         int numVertices();
         int numEdges();
         int indegree(int vertex);
