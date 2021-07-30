@@ -5,13 +5,7 @@ using namespace std;
 class Graph{
     public:
         Graph();
-        ~Graph()
-        {
-            for (int i = 0; i < size; i++)
-            {   delete[] adjMatrix[i];
-                delete[] adjMatrix;
-            }
-        }
+        ~Graph();
 
         bool vertex_index_exists(int &index, int target_vertex);
         bool isEmpty();
@@ -30,8 +24,8 @@ class Graph{
         void displayMatrix();
 
     private:
-        int size;
+        int size = 20;
         int vertices[20];
         int last_vertex_index = 0;
-        int adjMatrix[10][10];
+        int adjMatrix[5][5];
 };

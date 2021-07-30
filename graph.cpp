@@ -15,6 +15,12 @@ Graph::Graph()
     }
 }
 
+Graph::~Graph()
+{
+        delete[] adjMatrix;
+        
+}
+
 bool Graph::isEmpty()
 {
     if (last_vertex_index == 0)
@@ -29,6 +35,19 @@ void Graph::addVertex(int newVertex)
 {
     vertices[last_vertex_index] = newVertex;
     last_vertex_index++;
+}
+
+bool Graph :: vertex_index_exists(int &index, int target_vertex)
+{
+    for (int i = 0; i <= last_vertex_index; i++)
+    {
+        if (this->vertices[i] == target_vertex)
+        {
+            index = i;
+            return true;
+        }
+    }
+    return false;
 }
 
 void Graph ::addEdge(int vertex1, int vertex2)
@@ -47,19 +66,10 @@ void Graph::removeEdge(int vertex1, int vertex2)
     {
         this->adjMatrix[index_of_vertex1][index_of_vertex2] = 0;
     }
-}
-
-bool Graph :: vertex_index_exists(int &index, int target_vertex)
-{
-    for (int i = 0; i <= last_vertex_index; i++)
+    else       
     {
-        if (this->vertices[i] == target_vertex)
-        {
-            index = i;
-            return true;
-        }
+        cout<<"The given vertex doesn't exist"<<endl;
     }
-    return false;
 }
 
 void Graph::removeVertex(int vertex)
@@ -80,6 +90,7 @@ void Graph::removeVertex(int vertex)
         last_vertex_index--;
     }
 }
+
 int Graph::numEdges()
 {
     if (!isEmpty())
@@ -97,4 +108,27 @@ int Graph::numEdges()
         }
         return edges;
     }
+    else
+    {
+        cout<<"The given graph is empty"<<endl;
+        return 0;
+    }
+}
+
+int Graph::numVertices()
+{
+    return last_vertex_index;
+}
+
+void Graph::displayMatrix()
+{   
+    cout<<"\nThe adjacency matrix is:"<<endl;
+       for(int i=0; i<5; i++)
+        {
+                for(int j=0; j<5; j++)
+                {
+                        cout<<" "<<adjMatrix[i][j]<<" ";
+                }
+                cout<<"\n";
+        }
 }
