@@ -17,8 +17,7 @@ Graph::Graph()
 
 Graph::~Graph()
 {
-        delete[] adjMatrix;
-        
+        delete[] adjMatrix;    
 }
 
 bool Graph::isEmpty()
@@ -68,7 +67,7 @@ void Graph::removeEdge(int vertex1, int vertex2)
     }
     else       
     {
-        cout<<"The given vertex doesn't exist"<<endl;
+        cout<<"The given edge doesn't exist"<<endl;
     }
 }
 
