@@ -7,15 +7,16 @@ class Graph{
         Graph();
         ~Graph()
         {
-            for (int i = 0; i < n; i++)
+            for (int i = 0; i < size; i++)
             {   delete[] adjMatrix[i];
                 delete[] adjMatrix;
             }
         }
 
+        bool vertex_index_exists(int &index, int target_vertex);
         bool isEmpty();
         bool isDirected();
-        bool addVertex(int newVertex);
+        void addVertex(int newVertex);
         void addEdge(int vertex1, int vertex2);
         void removeEdge(int vertex1, int vertex2);
         void removeVertex(int vertex1, int vertex2);
@@ -29,6 +30,8 @@ class Graph{
         void displayMatrix();
 
     private:
-        int n;
+        int size;
+        int vertices[20];
+        int last_vertex_index = 0;
         int adjMatrix[10][10];
 };
