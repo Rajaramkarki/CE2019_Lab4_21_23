@@ -73,7 +73,7 @@ void Graph::removeEdge(int vertex1, int vertex2)
 
 void Graph::removeVertex(int vertex)
 {
-    int index;
+    int index, vertex1, vertex2;
     if (vertex_index_exists(index, vertex))
     {
         for (int i = 0; i <= size; i++)
@@ -87,6 +87,11 @@ void Graph::removeVertex(int vertex)
             this->vertices[i] = this->vertices[i + 1];
         }
         last_vertex_index--;
+    }
+    
+    if(vertex == vertex1 || vertex == vertex2)
+    {
+        removeEdge(vertex1, vertex2);
     }
 }
 
