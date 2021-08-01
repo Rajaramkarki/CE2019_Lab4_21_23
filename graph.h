@@ -19,7 +19,7 @@ class Graph{
         int indegree(int vertex);
         int outdegree(int vertex);
         int degree(int vertex);
-        int neighbours(int vertex);
+        void neighbours(int vertex);
         bool neighbour(int vertex1, int vertex2);
         void displayMatrix();
 
