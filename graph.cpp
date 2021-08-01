@@ -15,10 +15,6 @@ Graph::Graph()
     }
 }
 
-Graph::~Graph()
-{
-        delete[] adjMatrix;    
-}
 
 bool Graph::isEmpty()
 {
@@ -88,11 +84,8 @@ void Graph::removeVertex(int vertex)
         }
         last_vertex_index--;
     }
+
     
-    if(vertex == vertex1 || vertex == vertex2)
-    {
-        removeEdge(vertex1, vertex2);
-    }
 }
 
 int Graph::numEdges()
@@ -127,9 +120,9 @@ int Graph::numVertices()
 void Graph::displayMatrix()
 {   
     cout<<"\nThe adjacency matrix is:"<<endl;
-       for(int i=0; i<5; i++)
+       for(int i=0; i<10; i++)
         {
-                for(int j=0; j<5; j++)
+                for(int j=0; j<10; j++)
                 {
                         cout<<" "<<adjMatrix[i][j]<<" ";
                 }
@@ -148,7 +141,7 @@ int Graph::indegree(int vertex)
     int indegree=0;
     if (vertex_index_exists(index_of_vertex, vertex))
     {
-        for(int i=0; i<5; i++)
+        for(int i=0; i<16; i++)
         {
             if(this->adjMatrix[i][index_of_vertex] == 1)
             {
@@ -165,7 +158,7 @@ int Graph::outdegree(int vertex)
     int outdegree=0;
     if (vertex_index_exists(index_of_vertex, vertex))
     {
-        for(int i=0; i<5; i++)
+        for(int i=0; i<16; i++)
         {
             if(this->adjMatrix[index_of_vertex][i] == 1)
             {
@@ -203,7 +196,7 @@ void Graph::neighbours(int vertex)
     if (vertex_index_exists(index_of_vertex, vertex))
     {
         cout<<"The neighbours of given vertex are: "<<endl;
-        for(int i=0; i<5; i++)
+        for(int i=0; i<16; i++)
         {
             if(this->adjMatrix[index_of_vertex][i] == 1)
             {

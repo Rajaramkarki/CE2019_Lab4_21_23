@@ -5,7 +5,6 @@ using namespace std;
 class Graph{
     public:
         Graph();
-        ~Graph();
 
         bool vertex_index_exists(int &index, int target_vertex);
         bool isEmpty();
@@ -24,8 +23,8 @@ class Graph{
         void displayMatrix();
 
     private:
-        int size = 20;
-        int vertices[20];
+        int size = 16;
+        int vertices[16];
         int last_vertex_index = 0;
-        int adjMatrix[5][5];
+        int adjMatrix[16][16];
 };
