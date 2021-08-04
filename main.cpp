@@ -25,13 +25,13 @@ int main()
     g.displayMatrix();
 
     cout<<"\nThe number of edges are:"<<g.numEdges()<<endl;
-    cout<<"\nThe number of vertices are:"<<g.numVertices()<<endl;
+    cout<<"The number of vertices are:"<<g.numVertices()<<endl;
 
     g.neighbours(7);
     g.removeVertex(7);
     g.removeVertex(5);
    
     cout<<"\nThe number of edges are:"<<g.numEdges()<<endl;
-    cout<<"\nThe number of vertices are:"<<g.numVertices()<<endl;
+    cout<<"The number of vertices are:"<<g.numVertices()<<endl;
     g.displayMatrix();
 }

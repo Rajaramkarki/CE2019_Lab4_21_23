@@ -90,33 +90,6 @@ void Graph::removeVertex(int vertex)
     }   
 }
 
-// void Graph::removeVertex(int vertex)
-// {
-//     int index;
-//     if (vertex_index_exists(index, vertex))
-//     {
-//         for (int i = 0; i < last_vertex_index; i++)
-//         {
-//             if (this->adjacency_matrix[index][i] != 0)
-//             {
-//                 removing the edges that initiate from the vertex
-//                 this->adjacency_matrix[index][i] = 0;
-
-//                 removing the edges that terminate to the vertex
-//                 this->adjacency_matrix[i][index] = 0;
-//             }
-//         }
-//         this->vertices[index] = 0;
-
-//         Shifting the vertices after the vertex_to_be_deleted up
-//         for (int i = index; i < last_vertex_index ; i++)
-//         {
-//             this->vertices[i] = this->vertices[i + 1];
-//         }
-//         last_vertex_index--;
-//     }
-// }
-
 
 int Graph::numEdges()
 {
