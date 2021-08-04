@@ -19,12 +19,19 @@ int main()
     g.addEdge(2, 3);
     g.addEdge(3, 2);
     g.addEdge(3, 1);
-    g.addEdge(7, 9);
+    g.addEdge(4, 5);
+    g.addEdge(7, 8);
 
     g.displayMatrix();
 
     cout<<"\nThe number of edges are:"<<g.numEdges()<<endl;
+    cout<<"\nThe number of vertices are:"<<g.numVertices()<<endl;
 
     g.neighbours(7);
+    g.removeVertex(7);
+    g.removeVertex(5);
    
+    cout<<"\nThe number of edges are:"<<g.numEdges()<<endl;
+    cout<<"\nThe number of vertices are:"<<g.numVertices()<<endl;
+    g.displayMatrix();
 }
