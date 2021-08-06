@@ -8,9 +8,9 @@ Graph::Graph()
     cout<<"Do you want your graph to be directed or not? (Enter 1 for yes and 0 for no):";
     cin>>directed;
     this->last_vertex_index = 0;
-    for (int i = 0; i <= size; i++)
+    for (int i = 0; i < size; i++)
     {
-        for (int j = 0; j <= size; j++)
+        for (int j = 0; j < size; j++)
         {
             this->adjMatrix[i][j] = 0;
         }
@@ -83,14 +83,30 @@ void Graph ::addEdge(int vertex1, int vertex2)
 
 void Graph::removeEdge(int vertex1, int vertex2)
 {
-    int index_of_vertex1, index_of_vertex2;
-    if (vertex_index_exists(index_of_vertex1, vertex1) && vertex_index_exists(index_of_vertex2, vertex2))
+    if(directed==1)
     {
-        this->adjMatrix[index_of_vertex1][index_of_vertex2] = 0;
+        int index_of_vertex1, index_of_vertex2;
+        if (vertex_index_exists(index_of_vertex1, vertex1) && vertex_index_exists(index_of_vertex2, vertex2))
+        {
+            this->adjMatrix[index_of_vertex1][index_of_vertex2] = 0;
+        }
+        else       
+        {
+            cout<<"The given edge doesn't exist"<<endl;
+        }
     }
-    else       
+    else
     {
-        cout<<"The given edge doesn't exist"<<endl;
+        int index_of_vertex1, index_of_vertex2;
+        if (vertex_index_exists(index_of_vertex1, vertex1) && vertex_index_exists(index_of_vertex2, vertex2))
+        {
+            this->adjMatrix[index_of_vertex1][index_of_vertex2] = 0;
+            this->adjMatrix[index_of_vertex2][index_of_vertex1] = 0;
+        }
+        else       
+        {
+            cout<<"The given edge doesn't exist"<<endl;
+        }
     }
 }
 
@@ -99,7 +115,7 @@ void Graph::removeVertex(int vertex)
     int index;
     if (vertex_index_exists(index, vertex))
     {
-        for (int i = 0; i <= 15; i++)
+        for (int i = 0; i < 16; i++)
         {
              if (this->adjMatrix[index][i] == 1 || this->adjMatrix[i][index] == 1)
             {
@@ -120,39 +136,66 @@ void Graph::removeVertex(int vertex)
 
 int Graph::numEdges()
 {
-    if (!isEmpty())
+    if(directed==1)
     {
-        int edges = 0;
-        for (int i = 0; i <= 15; i++)
+        if (!isEmpty())
         {
-            for (int j = 0; j <= 15; j++)
+            int edges = 0;
+            for (int i = 0; i < 16; i++)
             {
-                if (this->adjMatrix[i][j] == 1)
+                for (int j = 0; j < 16; j++)
                 {
-                    edges++;
+                    if (this->adjMatrix[i][j] == 1)
+                    {
+                        edges++;
+                    }
                 }
             }
+            return edges;
         }
-        return edges;
+        else
+        {
+            cout<<"The given graph is empty"<<endl;
+            return 0;
+        }
     }
+
     else
     {
-        cout<<"The given graph is empty"<<endl;
-        return 0;
+        if (!isEmpty())
+        {
+            int edges = 0;
+            for (int i = 0; i < 16; i++)
+            {
+                for (int j = i; j < 16; j++)
+                {
+                    if (this->adjMatrix[i][j] == 1)
+                    {
+                        edges++;
+                    }
+                }
+            }
+            return edges;
+        }
+        else
+        {
+            cout<<"The given graph is empty"<<endl;
+            return 0;
+        }
     }
 }
 
 int Graph::numVertices()
 {
-    return last_vertex_index;
+        return last_vertex_index;
 }
 
 void Graph::displayMatrix()
 {   
     cout<<"\nThe adjacency matrix is:"<<endl;
-       for(int i=0; i<10; i++)
+       for(int i=0; i<16; i++)
         {
-                for(int j=0; j<10; j++)
+                for(int j=0; j<16; j++)
                 {
                         cout<<" "<<adjMatrix[i][j]<<" ";
                 }
@@ -162,41 +205,76 @@ void Graph::displayMatrix()
 
 int Graph::degree(int vertex)
 {
-    return indegree(vertex)+outdegree(vertex);
+    if(directed==1)
+    {
+        return indegree(vertex)+outdegree(vertex);
+    }  
+    else
+    {
+        int index_of_vertex;
+        int degree=0;
+        if (vertex_index_exists(index_of_vertex, vertex))
+        {
+            for(int i=0; i<16; i++)
+            {
+                if(this->adjMatrix[i][index_of_vertex] == 1 && this->adjMatrix[index_of_vertex][i] == 1)
+                {
+                    degree++;
+                }
+            }
+        }
+        return degree;
+    }
 }
 
 int Graph::indegree(int vertex)
 {
-    int index_of_vertex;
-    int indegree=0;
-    if (vertex_index_exists(index_of_vertex, vertex))
+    if(directed==1)
     {
-        for(int i=0; i<15; i++)
+        int index_of_vertex;
+        int indegree=0;
+        if (vertex_index_exists(index_of_vertex, vertex))
         {
-            if(this->adjMatrix[i][index_of_vertex] == 1)
+            for(int i=0; i<16; i++)
             {
-                indegree++;
+                if(this->adjMatrix[i][index_of_vertex] == 1)
+                {
+                    indegree++;
+                }
             }
         }
+        return indegree;
     }
-    return indegree;
+    else
+    {
+        cout<<"The indegree cannot be determined as the graph is undirected but the degree of entered vertex is:"<<degree(vertex)<<endl;
+        return 0;
+    }
 }
 
 int Graph::outdegree(int vertex)
 {
-    int index_of_vertex;
-    int outdegree=0;
-    if (vertex_index_exists(index_of_vertex, vertex))
+    if(directed==1)
     {
-        for(int i=0; i<15; i++)
+        int index_of_vertex;
+        int outdegree=0;
+        if (vertex_index_exists(index_of_vertex, vertex))
         {
-            if(this->adjMatrix[index_of_vertex][i] == 1)
+            for(int i=0; i<16; i++)
             {
-                outdegree++;
+                if(this->adjMatrix[index_of_vertex][i] == 1)
+                {
+                    outdegree++;
+                }
             }
         }
+        return outdegree;
     }
-    return outdegree;
+    else
+    {
+        cout<<"The outdegree cannot be determined as the graph is undirected but the degree of entered vertex is:"<<degree(vertex)<<endl;
+        return 0;
+    }
 }
 
 bool Graph::neighbour(int vertex1, int vertex2)
@@ -226,7 +304,7 @@ void Graph::neighbours(int vertex)
     if (vertex_index_exists(index_of_vertex, vertex))
     {
         cout<<"The neighbours of given vertex are: "<<endl;
-        for(int i=0; i<15; i++)
+        for(int i=0; i<16; i++)
         {
             if(this->adjMatrix[index_of_vertex][i] == 1)
             {
