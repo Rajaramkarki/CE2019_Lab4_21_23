@@ -22,9 +22,12 @@ class Graph{
         bool neighbour(int vertex1, int vertex2);
         void displayMatrix();
 
+        int directed;
+
     private:
         int size = 16;
         int vertices[16];
         int last_vertex_index = 0;
         int adjMatrix[16][16];
+        
 };

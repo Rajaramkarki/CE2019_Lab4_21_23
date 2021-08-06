@@ -5,6 +5,8 @@ using namespace std;
 
 Graph::Graph()
 {
+    cout<<"Do you want your graph to be directed or not? (Enter 1 for yes and 0 for no):";
+    cin>>directed;
     this->last_vertex_index = 0;
     for (int i = 0; i <= size; i++)
     {
@@ -12,6 +14,18 @@ Graph::Graph()
         {
             this->adjMatrix[i][j] = 0;
         }
+    }
+}
+
+bool Graph::isDirected()
+{
+    if(directed==1)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
     }
 }
 
@@ -47,10 +61,23 @@ bool Graph :: vertex_index_exists(int &index, int target_vertex)
 
 void Graph ::addEdge(int vertex1, int vertex2)
 {
+    if(directed==1)
+    {
     int index_of_vertex1, index_of_vertex2;
     if (vertex_index_exists(index_of_vertex1, vertex1) && vertex_index_exists(index_of_vertex2, vertex2))
     {
         this->adjMatrix[index_of_vertex1][index_of_vertex2] = 1;
+    }
+    }
+
+    else
+    {
+    int index_of_vertex1, index_of_vertex2;
+    if (vertex_index_exists(index_of_vertex1, vertex1) && vertex_index_exists(index_of_vertex2, vertex2))
+    {
+        this->adjMatrix[index_of_vertex1][index_of_vertex2] = 1;
+        this->adjMatrix[index_of_vertex2][index_of_vertex1] = 1;
+    } 
     }
 }
 

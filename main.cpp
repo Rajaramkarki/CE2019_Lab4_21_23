@@ -28,8 +28,17 @@ int main()
     cout<<"The number of vertices are:"<<g.numVertices()<<endl;
 
     g.neighbours(7);
-    g.removeVertex(7);
+    g.removeVertex(3);
     g.removeVertex(5);
+
+    if(g.isDirected())
+    {
+        cout<<"The graph is directed graph."<<endl;
+    }
+    else
+    {
+       cout<<"The graph is undirected graph."<<endl; 
+    }
    
     cout<<"\nThe number of edges are:"<<g.numEdges()<<endl;
     cout<<"The number of vertices are:"<<g.numVertices()<<endl;
