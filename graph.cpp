@@ -244,7 +244,14 @@ int Graph::degree(int vertex)
             {
                 if(this->adjMatrix[i][index_of_vertex] == 1 && this->adjMatrix[index_of_vertex][i] == 1)
                 {
-                    degree++;
+                    if(i==index_of_vertex)
+                    {
+                        degree=degree+2;
+                    }
+                    else
+                    {
+                        degree++;
+                    }
                 }
             }
         }
