@@ -7,9 +7,11 @@ using namespace std;
 class Graph{
     public:
         Graph();
+         int directed;
 
         bool vertex_index_exists(int &index, int target_vertex);
         bool isEmpty();
+        bool checkEmpty();
         bool isDirected();
         void addVertex(int newVertex);
         void addEdge(int vertex1, int vertex2);
@@ -26,9 +28,10 @@ class Graph{
         void displayVertices();
         void createRandomGraph();
 
-        int directed;
+        void createRandomGraph(int n);
 
     private:
+       
         int size = 16;
         int vertices[16];
         int last_vertex_index = 0;

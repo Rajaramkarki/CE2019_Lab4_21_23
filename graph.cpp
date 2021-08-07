@@ -1,5 +1,6 @@
 #include<iostream>
 #include "graph.h"
+#include <time.h>
 
 using namespace std;
 
@@ -7,6 +8,7 @@ Graph::Graph()
 {
     cout<<"Do you want your graph to be directed or not? (Enter 1 for yes and 0 for no):";
     cin>>directed;
+
     this->last_vertex_index = 0;
     for (int i = 0; i < size; i++)
     {
@@ -29,6 +31,19 @@ bool Graph::isDirected()
     }
 }
 
+bool Graph::checkEmpty()
+{
+    if(isEmpty())
+    {
+        cout<<"The graph is empty"<<endl;
+        return true;
+    }
+    else
+    {
+        cout<<"The graph is not empty"<<endl;
+        return false;
+    }
+}
 
 bool Graph::isEmpty()
 {
@@ -195,16 +210,16 @@ void Graph::displayVertices()
 {
     for(int i=0; i<last_vertex_index; i++)
     {
-        cout<<vertices[i]<<"\t"<<endl;
+        cout<<vertices[i]<<"\t";
     }
 }
 
 void Graph::displayMatrix()
 {   
     cout<<"\nThe adjacency matrix is:"<<endl;
-       for(int i=0; i<16; i++)
+       for(int i=0; i<8; i++)
         {
-                for(int j=0; j<16; j++)
+                for(int j=0; j<8; j++)
                 {
                         cout<<" "<<adjMatrix[i][j]<<" ";
                 }
@@ -216,6 +231,7 @@ int Graph::degree(int vertex)
 {
     if(directed==1)
     {
+        cout<<"The degree of "<<vertex<<" is "<<indegree(vertex)+outdegree(vertex)<<endl;
         return indegree(vertex)+outdegree(vertex);
     }  
     else
@@ -232,6 +248,7 @@ int Graph::degree(int vertex)
                 }
             }
         }
+        cout<<"The degree of "<<vertex<<" is "<<degree<<endl;
         return degree;
     }
 }
@@ -291,12 +308,21 @@ bool Graph::neighbour(int vertex1, int vertex2)
     int index_of_vertex1, index_of_vertex2;
     if (vertex_index_exists(index_of_vertex1, vertex1) && vertex_index_exists(index_of_vertex2, vertex2))
     {
-        if(this->adjMatrix[index_of_vertex1][index_of_vertex2] == 1)
+        if(this->adjMatrix[index_of_vertex1][index_of_vertex2] == 1 || this->adjMatrix[index_of_vertex2][index_of_vertex1] == 1)
         {
+                if(directed==1)
+            {
+                cout<<"The given vertices are neighbours."<<endl;
+            }
+            else
+            {
+                cout<<"The entered vertices are neighbours."<<endl;
+            }   
             return true;
         }
         else
         {
+            cout<<"The entered vertices are not neighbours."<<endl;
             return false;
         }
     }
@@ -312,15 +338,17 @@ void Graph::neighbours(int vertex)
     int index_of_vertex, c=0;
     if (vertex_index_exists(index_of_vertex, vertex))
     {
-        cout<<"The neighbours of given vertex are: "<<endl;
+        cout<<"The neighbours of given vertex are: ";
         for(int i=0; i<16; i++)
         {
-            if(this->adjMatrix[index_of_vertex][i] == 1)
+            if(this->adjMatrix[index_of_vertex][i] == 1 || this->adjMatrix[i][index_of_vertex] == 1)
             {
-                cout<<vertices[i]<<endl;
+                cout<<vertices[i];
+                cout<<"\t";
                 c++;
             }
         }
+        cout<<endl;
         if(c==0)
         {
             cout<<"Error! There are no neighbours of the given vertex."<<endl;
@@ -332,27 +360,24 @@ void Graph::neighbours(int vertex)
     }
 }
 
-// void createRandomGraph()
-// {
-//     int n;
-//     int ranadjMatrix[16][16];
-//     int vertices[16];
+void Graph::createRandomGraph(int n)
+{
+    srand (time(NULL));
 
-//     cout<<"enter the number of vertices to be generated in the graph"<<endl;
-//     cin>> n;
+    for(int i=0; i<n; i++)
+    {
+        addVertex(rand() % 50);
+    }
 
-//     for (int i = 0; i < n; i++)
-//     {
-//         for (int j = 0; j < n; j++)
-//         {
-//             ranadjMatrix[i][j] = rand() % 2;
-//         }
-//     }
+    for (int i = 0; i <= n-1; i++)
+    {
+        for (int j = 0; j <= n-1; j++)
+        {
+            if(directed == 1)
+                adjMatrix[i][j] = rand() % 2;
 
-//     for(int i=0;i<n;i++)
-//     {
-//         vertices[i] = rand() % 10;
-//     }
-// }
-
-
+            if(directed == 0)
+                adjMatrix[i][j] = adjMatrix[j][i] = rand() % 2;
+        }
+    }
+}

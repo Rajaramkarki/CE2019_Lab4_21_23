@@ -7,14 +7,8 @@ using namespace std;
 int main()
 {
     Graph g;
-    if(g.isEmpty())
-    {
-        cout<<"The graph is empty."<<endl;
-    }
-    else
-    {
-        cout<<"The graph is not empty."<<endl;
-    }
+    g.checkEmpty();
+
     g.addVertex(1);
     g.addVertex(2);
     g.addVertex(3);
@@ -25,20 +19,11 @@ int main()
     g.addEdge(1, 2);
     g.addEdge(2, 4);
     g.addEdge(2, 3);
-    g.addEdge(3, 2);
     g.addEdge(3, 1);
     g.addEdge(4, 1);
-    g.addEdge(4, 3);
     g.addEdge(5, 2);
 
-    if(g.isEmpty())
-    {
-        cout<<"The graph is empty."<<endl;
-    }
-    else
-    {
-        cout<<"The graph is not empty."<<endl;
-    }
+    g.checkEmpty();
     
     if(g.isDirected())
     {
@@ -46,53 +31,48 @@ int main()
     }
     else
     {
-       cout<<"The graph is undirected graph."<<endl; 
+        cout<<"The graph is undirected graph."<<endl; 
     }
+
     g.displayMatrix();
-    cout<<"The degree of the entered vertex is: "<<g.degree(5)<<endl;
-    cout<<"The in-degree of the entered vertex is: "<<g.indegree(5)<<endl;
-    cout<<"The out-degree of the entered vertex is: "<<g.outdegree(5)<<endl;
-    if(g.neighbour(5, 3))
+    cout<<"\n"<<endl;
+
+    g.degree(5);
+    if(g.directed == 1)
     {
-        if(g.directed==1)
-        {
-            cout<<"The second vertex is the neighbour of first vertex."<<endl;
-        }
-        else
-        {
-            cout<<"The entered vertices are neighbours."<<endl;
-        }   
+        cout<<"The indegree is "<<g.indegree(5)<<endl;
+        cout<<"The outdegree is "<<g.outdegree(5)<<endl;;
     }
-    else{
-        cout<<"The entered vertices are not neighbours."<<endl;
-    }
-    if(g.neighbour(1, 4))
-    {
-        if(g.directed==1)
-        {
-            cout<<"The second vertex is the neighbour of first vertex."<<endl;
-        }
-        else
-        {
-            cout<<"The entered vertices are neighbours."<<endl;
-        } 
-    }
-    else{
-        cout<<"The entered vertices are not neighbours."<<endl;
-    }
+    cout<<"\n"<<endl;
+    g.neighbour(5, 3);
+
+    g.neighbour(1, 4);
+    
+    cout<<"\n"<<endl;
     g.neighbours(4);
     cout<<"The number of edges are:"<<g.numEdges()<<endl;
     g.removeEdge(1,2);
+    cout<<"\n"<<endl;
     cout<<"The number of edges are:"<<g.numEdges()<<endl;
     cout<<"The number of vertices are:"<<g.numVertices()<<endl;
     g.removeVertex(3);
+    cout<<"\n"<<endl;
     cout<<"The number of edges are:"<<g.numEdges()<<endl;
     cout<<"The number of vertices are:"<<g.numVertices()<<endl;
     g.displayMatrix();
 
+    cout<<"\n"<<endl;
     cout<<"The vertices are:"<<endl;
     g.displayVertices();
 
-    
-
+    cout<<"\n"<<endl;
+    cout<<"\nGenerating a random graph"<<endl;
+    Graph h;
+    int n;
+    cout<<"Enter the number of vertices in the graph"<<endl;
+    cin>>n;
+    h.createRandomGraph(n);
+    h.displayMatrix();
+    cout<<"\n"<<endl;
+    h.displayVertices();
 }
