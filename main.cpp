@@ -27,6 +27,7 @@ int main()
     g.addEdge(3, 1);
     g.addEdge(4, 1);
     g.addEdge(4, 3);
+    g.addEdge(4, 4);
     g.addEdge(5, 2);
 
     if(g.isEmpty())
@@ -47,9 +48,9 @@ int main()
        cout<<"The graph is undirected graph."<<endl; 
     }
     g.displayMatrix();
-    cout<<"The degree of the entered vertex is: "<<g.degree(5)<<endl;
-    cout<<"The in-degree of the entered vertex is: "<<g.indegree(5)<<endl;
-    cout<<"The out-degree of the entered vertex is: "<<g.outdegree(5)<<endl;
+    cout<<"The degree of the entered vertex is: "<<g.degree(4)<<endl;
+    cout<<"The in-degree of the entered vertex is: "<<g.indegree(4)<<endl;
+    cout<<"The out-degree of the entered vertex is: "<<g.outdegree(4)<<endl;
     if(g.neighbour(5, 3))
     {
         if(g.directed==1)
