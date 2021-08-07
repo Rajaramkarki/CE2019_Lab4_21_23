@@ -26,9 +26,12 @@ class Graph{
         void displayVertices();
         void createRandomGraph();
 
+        int directed;
+
     private:
         int size = 16;
         int vertices[16];
         int last_vertex_index = 0;
         int adjMatrix[16][16];
+        
 };
