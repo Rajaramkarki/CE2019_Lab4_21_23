@@ -45,6 +45,7 @@ bool Graph :: vertex_index_exists(int &index, int target_vertex)
     return false;
 }
 
+
 void Graph ::addEdge(int vertex1, int vertex2)
 {
     int index_of_vertex1, index_of_vertex2;
@@ -118,6 +119,14 @@ int Graph::numEdges()
 int Graph::numVertices()
 {
     return last_vertex_index;
+}
+
+void Graph::displayVertices()
+{
+    for(int i=0; i<last_vertex_index; i++)
+    {
+        cout<<vertices[i]<<"\t"<<endl;
+    }
 }
 
 void Graph::displayMatrix()
@@ -217,4 +226,28 @@ void Graph::neighbours(int vertex)
         cout<<"Error!! The vertex doesn't exist."<<endl;
     }
 }
+
+// void createRandomGraph()
+// {
+//     int n;
+//     int ranadjMatrix[16][16];
+//     int vertices[16];
+
+//     cout<<"enter the number of vertices to be generated in the graph"<<endl;
+//     cin>> n;
+
+//     for (int i = 0; i < n; i++)
+//     {
+//         for (int j = 0; j < n; j++)
+//         {
+//             ranadjMatrix[i][j] = rand() % 2;
+//         }
+//     }
+
+//     for(int i=0;i<n;i++)
+//     {
+//         vertices[i] = rand() % 10;
+//     }
+// }
+
 

@@ -2,6 +2,8 @@
 
 using namespace std;
 
+
+
 class Graph{
     public:
         Graph();
@@ -21,6 +23,8 @@ class Graph{
         void neighbours(int vertex);
         bool neighbour(int vertex1, int vertex2);
         void displayMatrix();
+        void displayVertices();
+        void createRandomGraph();
 
     private:
         int size = 16;

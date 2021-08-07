@@ -2,6 +2,8 @@
 #include "graph.h"
 using namespace std;
 
+// void createRandomGraph();
+
 int main()
 {
     Graph g;
@@ -34,4 +36,10 @@ int main()
     cout<<"\nThe number of edges are:"<<g.numEdges()<<endl;
     cout<<"The number of vertices are:"<<g.numVertices()<<endl;
     g.displayMatrix();
+
+    cout<<"The vertices are:"<<endl;
+    g.displayVertices();
+
+    
+
 }
