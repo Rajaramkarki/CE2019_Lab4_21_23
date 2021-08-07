@@ -61,7 +61,7 @@ void Graph::addVertex(int newVertex)
     last_vertex_index++;
 }
 
-bool Graph :: vertex_index_exists(int &index, int target_vertex)
+bool Graph :: ifVertexExists(int &index, int target_vertex)
 {
     for (int i = 0; i <= last_vertex_index; i++)
     {
@@ -79,20 +79,20 @@ void Graph ::addEdge(int vertex1, int vertex2)
 {
     if(directed==1)
     {
-    int index_of_vertex1, index_of_vertex2;
-    if (vertex_index_exists(index_of_vertex1, vertex1) && vertex_index_exists(index_of_vertex2, vertex2))
+    int vertex1ind, vertex2ind;
+    if (ifVertexExists(vertex1ind, vertex1) && ifVertexExists(vertex2ind, vertex2))
     {
-        this->adjMatrix[index_of_vertex1][index_of_vertex2] = 1;
+        this->adjMatrix[vertex1ind][vertex2ind] = 1;
     }
     }
 
     else
     {
-    int index_of_vertex1, index_of_vertex2;
-    if (vertex_index_exists(index_of_vertex1, vertex1) && vertex_index_exists(index_of_vertex2, vertex2))
+    int vertex1ind, vertex2ind;
+    if (ifVertexExists(vertex1ind, vertex1) && ifVertexExists(vertex2ind, vertex2))
     {
-        this->adjMatrix[index_of_vertex1][index_of_vertex2] = 1;
-        this->adjMatrix[index_of_vertex2][index_of_vertex1] = 1;
+        this->adjMatrix[vertex1ind][vertex2ind] = 1;
+        this->adjMatrix[vertex2ind][vertex1ind] = 1;
     } 
     }
 }
@@ -101,10 +101,10 @@ void Graph::removeEdge(int vertex1, int vertex2)
 {
     if(directed==1)
     {
-        int index_of_vertex1, index_of_vertex2;
-        if (vertex_index_exists(index_of_vertex1, vertex1) && vertex_index_exists(index_of_vertex2, vertex2))
+        int vertex1ind, vertex2ind;
+        if (ifVertexExists(vertex1ind, vertex1) && ifVertexExists(vertex2ind, vertex2))
         {
-            this->adjMatrix[index_of_vertex1][index_of_vertex2] = 0;
+            this->adjMatrix[vertex1ind][vertex2ind] = 0;
         }
         else       
         {
@@ -113,11 +113,11 @@ void Graph::removeEdge(int vertex1, int vertex2)
     }
     else
     {
-        int index_of_vertex1, index_of_vertex2;
-        if (vertex_index_exists(index_of_vertex1, vertex1) && vertex_index_exists(index_of_vertex2, vertex2))
+        int vertex1ind, vertex2ind;
+        if (ifVertexExists(vertex1ind, vertex1) && ifVertexExists(vertex2ind, vertex2))
         {
-            this->adjMatrix[index_of_vertex1][index_of_vertex2] = 0;
-            this->adjMatrix[index_of_vertex2][index_of_vertex1] = 0;
+            this->adjMatrix[vertex1ind][vertex2ind] = 0;
+            this->adjMatrix[vertex2ind][vertex1ind] = 0;
         }
         else       
         {
@@ -129,7 +129,7 @@ void Graph::removeEdge(int vertex1, int vertex2)
 void Graph::removeVertex(int vertex)
 {
     int index;
-    if (vertex_index_exists(index, vertex))
+    if (ifVertexExists(index, vertex))
     {
         for (int i = 0; i < 16; i++)
         {
@@ -238,7 +238,7 @@ int Graph::degree(int vertex)
     {
         int index_of_vertex;
         int degree=0;
-        if (vertex_index_exists(index_of_vertex, vertex))
+        if (ifVertexExists(index_of_vertex, vertex))
         {
             for(int i=0; i<16; i++)
             {
@@ -266,7 +266,7 @@ int Graph::indegree(int vertex)
     {
         int index_of_vertex;
         int indegree=0;
-        if (vertex_index_exists(index_of_vertex, vertex))
+        if (ifVertexExists(index_of_vertex, vertex))
         {
             for(int i=0; i<16; i++)
             {
@@ -291,7 +291,7 @@ int Graph::outdegree(int vertex)
     {
         int index_of_vertex;
         int outdegree=0;
-        if (vertex_index_exists(index_of_vertex, vertex))
+        if (ifVertexExists(index_of_vertex, vertex))
         {
             for(int i=0; i<16; i++)
             {
@@ -312,10 +312,10 @@ int Graph::outdegree(int vertex)
 
 bool Graph::neighbour(int vertex1, int vertex2)
 {
-    int index_of_vertex1, index_of_vertex2;
-    if (vertex_index_exists(index_of_vertex1, vertex1) && vertex_index_exists(index_of_vertex2, vertex2))
+    int vertex1ind, vertex2ind;
+    if (ifVertexExists(vertex1ind, vertex1) && ifVertexExists(vertex2ind, vertex2))
     {
-        if(this->adjMatrix[index_of_vertex1][index_of_vertex2] == 1 || this->adjMatrix[index_of_vertex2][index_of_vertex1] == 1)
+        if(this->adjMatrix[vertex1ind][vertex2ind] == 1 || this->adjMatrix[vertex2ind][vertex1ind] == 1)
         {
                 if(directed==1)
             {
@@ -343,7 +343,7 @@ bool Graph::neighbour(int vertex1, int vertex2)
 void Graph::neighbours(int vertex)
 {
     int index_of_vertex, c=0;
-    if (vertex_index_exists(index_of_vertex, vertex))
+    if (ifVertexExists(index_of_vertex, vertex))
     {
         cout<<"The neighbours of given vertex are: ";
         for(int i=0; i<16; i++)

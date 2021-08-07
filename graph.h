@@ -9,7 +9,7 @@ class Graph{
         Graph();
          int directed;
 
-        bool vertex_index_exists(int &index, int target_vertex);
+        bool ifVertexExists(int &index, int target_vertex);
         bool isEmpty();
         bool checkEmpty();
         bool isDirected();
