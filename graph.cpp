@@ -315,22 +315,31 @@ bool Graph::neighbour(int vertex1, int vertex2)
     int vertex1ind, vertex2ind;
     if (ifVertexExists(vertex1ind, vertex1) && ifVertexExists(vertex2ind, vertex2))
     {
-        if(this->adjMatrix[vertex1ind][vertex2ind] == 1 || this->adjMatrix[vertex2ind][vertex1ind] == 1)
+        if(directed==0)
         {
-                if(directed==1)
+            if(this->adjMatrix[vertex1ind][vertex2ind] == 1 || this->adjMatrix[vertex2ind][vertex1ind] == 1)
             {
-                cout<<"The given vertices are neighbours."<<endl;
+                    cout<<"The entered vertices are neighbours."<<endl;
+                    return true;
             }
             else
             {
-                cout<<"The entered vertices are neighbours."<<endl;
-            }   
-            return true;
+                cout<<"The entered vertices are not neighbours."<<endl;
+                return false;
+            }
         }
         else
         {
-            cout<<"The entered vertices are not neighbours."<<endl;
-            return false;
+            if(this->adjMatrix[vertex1ind][vertex2ind] == 1)
+            {
+                cout<<"The second vertex is the neighhbour of first vertex."<<endl;
+                return true;
+            }  
+            else
+            {
+                cout<<"The entered vertices are not neighbours."<<endl;
+                return false;
+            }
         }
     }
     else       
@@ -348,11 +357,23 @@ void Graph::neighbours(int vertex)
         cout<<"The neighbours of given vertex are: ";
         for(int i=0; i<16; i++)
         {
-            if(this->adjMatrix[index_of_vertex][i] == 1 || this->adjMatrix[i][index_of_vertex] == 1)
+            if(directed==0)
             {
-                cout<<vertices[i];
-                cout<<"\t";
-                c++;
+                if(this->adjMatrix[index_of_vertex][i] == 1 || this->adjMatrix[i][index_of_vertex] == 1)
+                {
+                    cout<<vertices[i];
+                    cout<<"\t";
+                    c++;
+                }
+            }
+            else
+            {
+                if(this->adjMatrix[index_of_vertex][i] == 1)
+                {
+                    cout<<vertices[i];
+                    cout<<"\t";
+                    c++;
+                }
             }
         }
         cout<<endl;

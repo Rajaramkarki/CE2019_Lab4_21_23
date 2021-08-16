@@ -37,16 +37,16 @@ int main()
     g.displayMatrix();
     cout<<"\n"<<endl;
 
-    g.degree(5);
+    g.degree(2);
     if(g.directed == 1)
     {
-        cout<<"The indegree is "<<g.indegree(5)<<endl;
-        cout<<"The outdegree is "<<g.outdegree(5)<<endl;;
+        cout<<"The indegree is "<<g.indegree(2)<<endl;
+        cout<<"The outdegree is "<<g.outdegree(2)<<endl;;
     }
     cout<<"\n"<<endl;
     g.neighbour(5, 3);
 
-    g.neighbour(1, 4);
+    g.neighbour(4, 1);
     
     cout<<"\n"<<endl;
     g.neighbours(4);
